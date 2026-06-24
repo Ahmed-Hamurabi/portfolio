@@ -1,1 +1,76 @@
-/* You can add global styles to this file, and also import other style files */
+/* === Ahmed Hamurabi — Portfolio Global Styles (v2) ===
+   Design concept: "Circuit & Signal"
+   Cool paper background with a faint blueprint dot-grid, electric-indigo +
+   coral accents, animated gradient glow, and scroll-triggered motion.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --paper: #EEF1F7;
+  --panel: #FFFFFF;
+  --ink: #11151C;
+  --muted: #5C6478;
+  --line: #D7DCE6;
+  --indigo: #3D5AFE;
+  --indigo-deep: #1E2A8C;
+  --coral: #FF6B4A;
+  --sky: #5EC8F2;
+
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --container: 920px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 1px 1px, var(--line) 1px, transparent 0) 0 0/22px 22px,
+    var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0 0 1rem; }
+
+a { color: var(--indigo); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+::selection { background: var(--coral); color: #fff; }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Scroll-reveal base state — toggled via IntersectionObserver in app.ts */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
